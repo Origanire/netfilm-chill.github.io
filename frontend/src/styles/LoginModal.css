@@ -1,0 +1,134 @@
+/* =====================================
+   Login Modal - Style Netflix
+   ===================================== */
+
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.login-modal {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  border: 2px solid rgba(229, 9, 20, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(229, 9, 20, 0.2);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+body.light .login-modal {
+  background: var(--bg-secondary);
+  border: 2px solid rgba(229, 9, 20, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 0 30px rgba(229, 9, 20, 0.1);
+}
+
+.login-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  hover: {
+    background: rgba(229, 9, 20, 0.1);
+    color: var(--accent-primary);
+  }
+}
+
+.login-modal-close:hover {
+  background: rgba(229, 9, 20, 0.1);
+  color: var(--accent-primary);
+}
+
+.login-modal-content {
+  text-align: center;
+}
+
+.login-modal-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.login-modal-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.login-button-google {
+  width: 100%;
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.login-button-google:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(229, 9, 20, 0.5);
+}
+
+.login-button-google:active {
+  transform: translateY(-1px);
+}
+
+.google-icon {
+  font-size: 1.3rem;
+}
+
+.login-modal-info {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

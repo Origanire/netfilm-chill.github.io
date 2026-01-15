@@ -1,0 +1,842 @@
+/* ===========================================
+   NETFLIX STYLE - NetFilm&CHill
+   Design sombre cinéma avec accent rouge
+   =========================================== */
+
+/* ========== VARIABLES THÈME NETFLIX (par défaut) ========== */
+:root {
+  /* Palette Netflix - Noir profond + Rouge éclatant */
+  --bg-primary: #000000;
+  --bg-secondary: #141414;
+  --bg-accent: #221f1f;
+  
+  /* Couleurs de texte */
+  --text-primary: #ffffff;
+  --text-secondary: #808080;
+  --text-muted: #565656;
+  
+  /* Accent Netflix - Rouge vif */
+  --accent-primary: #e50914;
+  --accent-secondary: #b81d13;
+  --accent-light: rgba(229, 9, 20, 0.15);
+  
+  /* Bordures et séparateurs */
+  --border-color: #333333;
+  --border-light: #221f1f;
+  
+  /* Ombres cinéma */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 20px rgba(229, 9, 20, 0.3);
+  
+  /* Effets de transparence */
+  --glass-bg: rgba(0, 0, 0, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  
+  /* Espacements */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  
+  /* Bordures arrondies */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  
+  /* Typographie - Poppins moderne */
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Mono', 'Roboto Mono', monospace;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-popover: 400;
+  --z-tooltip: 500;
+}
+
+/* ========== VARIABLES THÈME SOMBRE ========== */
+body.dark {
+  /* Netflix est déjà en dark mode - même palette */
+  --bg-primary: #000000;
+  --bg-secondary: #141414;
+  --bg-accent: #221f1f;
+  
+  /* Couleurs de texte */
+  --text-primary: #ffffff;
+  --text-secondary: #808080;
+  --text-muted: #565656;
+  
+  /* Accent rouge Netflix */
+  --accent-primary: #e50914;
+  --accent-secondary: #b81d13;
+  --accent-tertiary: #831010;
+  --accent-light: rgba(229, 9, 20, 0.15);
+  
+  /* Bordures et séparateurs */
+  --border-color: #333333;
+  --border-light: #221f1f;
+  
+  /* Ombres cinéma */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 20px rgba(229, 9, 20, 0.3);
+  
+  /* Effets de transparence */
+  --glass-bg: rgba(0, 0, 0, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ========== VARIABLES THÈME CLAIR ========== */
+body.light {
+  /* Palette clair - Blanc + Rouge Netflix */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-accent: #ebebeb;
+  
+  /* Couleurs de texte */
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  
+  /* Accent rouge Netflix */
+  --accent-primary: #e50914;
+  --accent-secondary: #b81d13;
+  --accent-tertiary: #8b0a0f;
+  --accent-light: rgba(229, 9, 20, 0.08);
+  
+  /* Bordures et séparateurs */
+  --border-color: #e0e0e0;
+  --border-light: #f0f0f0;
+  
+  /* Ombres légères */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 20px rgba(229, 9, 20, 0.15);
+  
+  /* Effets de transparence */
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(229, 9, 20, 0.1);
+}
+
+/* ========== RÉINITIALISATION & STYLES DE BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color var(--transition-normal),
+              color var(--transition-normal),
+              border-color var(--transition-normal),
+              box-shadow var(--transition-normal),
+              transform var(--transition-normal);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color var(--transition-normal),
+              color var(--transition-normal);
+}
+
+/* ========== TYPOGRAPHIE ========== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+/* ========== LAYOUT PRINCIPAL ========== */
+.app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--spacing-xl) 0;
+}
+
+/* ========== TOPBAR / HEADER ========== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  padding: var(--spacing-md) 0;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: -0.025em;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-icon {
+  font-size: 1.5rem;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* ========== BOUTON THÈME EN HAUT À DROITE ========== */
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  margin-left: var(--spacing-md);
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  width: 44px;
+  height: 24px;
+  padding: 2px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent-primary);
+}
+
+.theme-toggle-btn::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--text-secondary);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  left: 2px;
+}
+
+body.dark .theme-toggle-btn::after {
+  transform: translateX(20px);
+  background-color: var(--accent-primary);
+}
+
+.theme-toggle-btn svg {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  transition: opacity var(--transition-fast);
+}
+
+.theme-toggle-btn .sun-icon {
+  left: 5px;
+  color: var(--text-secondary);
+}
+
+.theme-toggle-btn .moon-icon {
+  right: 5px;
+  color: var(--text-muted);
+}
+
+/* ========== HERO SECTION MINIMALISTE ========== */
+.hero-minimal {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* ========== CARTES DE JEUX MINIMALISTES ========== */
+.games-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: var(--spacing-xl) 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.game-card-media {
+  height: 100px;
+  background: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s ease;
+}
+
+.game-card:hover .game-card-media {
+  background: var(--accent-secondary);
+}
+
+.game-card-icon {
+  font-size: 2rem;
+  color: #ffffff;
+  opacity: 0.95;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  display: inline-block;
+}
+
+.game-card:hover .game-card-icon {
+  transform: translateY(-6px) scale(1.1);
+  opacity: 1;
+}
+
+.game-card-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.game-card-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.game-card-actions {
+  margin-top: auto;
+}
+
+.game-card-actions .btn {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.game-card-actions .btn:hover {
+  background: var(--accent-secondary);
+}
+
+/* ========== BOUTONS ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-accent);
+  border-color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 1rem;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  padding: var(--spacing-xl) 0;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-link {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.footer-link:hover {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.footer-copyright {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ========== FORMULAIRES ET INPUTS ========== */
+.input-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.input-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+/* ========== COMPOSANT DE CHARGEMENT ========== */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========== UTILITAIRES ========== */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
+
+.hidden {
+  display: none !important;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1024px) {
+  .games-row {
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-minimal {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .games-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .games-main-title {
+    font-size: 1.75rem;
+  }
+  
+  .games-main-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .topbar-inner {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .hero-minimal {
+    padding: var(--spacing-md) 0;
+  }
+  
+  .hero-title {
+    font-size: 1.25rem;
+  }
+  
+  .topbar-inner {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .topbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+/* ========== AMÉLIORATIONS ACCESSIBILITÉ ========== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========== DERNIÈRES TOUCHES ========== */
+::selection {
+  background-color: var(--accent-light);
+  color: var(--accent-primary);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ========== STYLES POUR LA PAGE D'ACCUEIL ========== */
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.games-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.games-main-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.games-main-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+/* ========== STYLES POUR LES ICÔNES ========== */
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-lg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ========== SEPARATEURS ========== */
+.separator {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: var(--spacing-xl) 0;
+  border: none;
+}
+
+/* ========== CARTES COMPACTES ========== */
+.compact-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-fast);
+}
+
+.compact-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========== CARTES PLACEHOLDER MINIMALISTES ========== */
+.placeholder {
+  min-height: 200px;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.placeholder::after {
+  content: 'Bientôt disponible';
+}
+
+.placeholder:hover {
+  border-color: var(--accent-primary);
+}

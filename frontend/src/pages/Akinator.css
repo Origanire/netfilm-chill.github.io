@@ -1,0 +1,200 @@
+/* ===================================
+   NetFilm&CHill - Style Netflix Akinator
+   Design cinéma sombre + rouge éclatant
+   =================================== */
+
+:root {
+  /* Variables Akinator Netflix */
+  --akinator-bg: var(--bg-primary);
+  --akinator-text: var(--text-primary);
+  --akinator-card: var(--bg-secondary);
+  --akinator-accent: var(--accent-primary);
+  --akinator-accent-2: var(--accent-secondary);
+  --akinator-glass: var(--glass-border);
+  --akinator-avatar-border: var(--accent-primary);
+}
+
+body.dark {
+  --akinator-bg: var(--bg-primary);
+  --akinator-text: var(--text-primary);
+  --akinator-card: var(--bg-secondary);
+  --akinator-accent: var(--accent-primary);
+  --akinator-accent-2: var(--accent-secondary);
+  --akinator-glass: var(--glass-border);
+  --akinator-avatar-border: var(--accent-primary);
+}
+
+body.light {
+  --akinator-bg: var(--bg-primary);
+  --akinator-text: var(--text-primary);
+  --akinator-card: var(--bg-secondary);
+  --akinator-accent: var(--accent-primary);
+  --akinator-accent-2: var(--accent-secondary);
+  --akinator-glass: var(--glass-border);
+  --akinator-avatar-border: var(--accent-primary);
+}
+
+/* Conteneur principal - Cinéma sombre */
+.akinator-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--akinator-bg);
+  color: var(--akinator-text);
+  transition: background-color 320ms cubic-bezier(.4,0,.2,1), color 320ms cubic-bezier(.4,0,.2,1);
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+body.dark .akinator-container {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+}
+
+.akinator-header {
+  padding: 1.2rem 1.5rem 0.5rem 1.5rem;
+  background: transparent;
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--akinator-accent);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.akinator-brand {
+  color: var(--akinator-accent);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+.akinator-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.2rem 1.5rem 1.2rem;
+}
+
+.akinator-avatar-box {
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 10px 30px rgba(229, 9, 20, 0.4));
+}
+
+.akinator-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: 5px solid var(--akinator-accent);
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+  object-fit: cover;
+  background: var(--akinator-glass);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Animation Netflix */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(229, 9, 20, 0.8);
+  }
+}
+
+.akinator-question-box {
+  background: var(--akinator-card);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  min-width: 380px;
+  max-width: 96vw;
+  border: 2px solid rgba(229, 9, 20, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(229, 9, 20, 0.1);
+  margin-bottom: 1.5rem;
+  animation: fadeUp .7s cubic-bezier(.4,0,.2,1);
+  backdrop-filter: blur(10px);
+}
+
+body.light .akinator-question-box {
+  background: linear-gradient(135deg, rgba(245, 245, 245, 0.95) 0%, rgba(235, 235, 235, 0.95) 100%);
+  border: 2px solid rgba(229, 9, 20, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 20px rgba(229, 9, 20, 0.08);
+}
+
+.akinator-question {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  color: var(--akinator-text);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.akinator-answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.akinator-container .btn {
+  background: var(--akinator-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 1.1rem 1.8rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-family: 'Poppins', sans-serif;
+  min-width: 150px;
+}
+
+.akinator-container .btn:hover {
+  background: var(--akinator-accent-2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6);
+  min-height: 56px;
+}
+
+.akinator-container .btn:active {
+  transform: translateY(-1px);
+}
+
+.akinator-result {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--akinator-text);
+  margin-top: 1.5rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.akinator-result-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
