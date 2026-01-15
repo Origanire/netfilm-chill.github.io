@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../pages/Akinator.css';
+import { API_ENDPOINTS } from '../config/api';
 
 // Charger automatiquement toutes les pistes depuis le dossier assets/soundtracks
 const _soundModules = import.meta.glob('../assets/soundtracks/*.mp3', { eager: true, as: 'url' });
@@ -29,8 +30,7 @@ export default function BlindTest() {
   const feedbackRef = React.useRef(null);
   const [quizId, setQuizId] = useState(null);
 
-  // Utiliser l'API exposée par `importFlask.py`
-  const API_URL = 'http://localhost:5002/api';
+  const API_URL = API_ENDPOINTS.BLINDTEST;
 
   function startBlindTest() {
     // stop any playing sounds when starting a new quiz

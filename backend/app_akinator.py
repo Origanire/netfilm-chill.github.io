@@ -21,7 +21,8 @@ from engines.engine_akinator import (
 )
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+origin = os.getenv("ALLOWED_ORIGIN", "https://origanire.github.io")
+CORS(app, resources={r"/*": {"origins": [origin]}})
 
 OPTIONS_UI = ["Oui", "Non", "Je ne sais pas", "Probablement", "Probablement pas"]
 

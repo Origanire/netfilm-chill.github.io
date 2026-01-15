@@ -5,7 +5,8 @@ import requests
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "POST", "OPTIONS"], "allow_headers": ["Content-Type"]}})
+origin = os.getenv("ALLOWED_ORIGIN", "https://origanire.github.io")
+CORS(app, resources={r"/*": {"origins": [origin]}})
 
 @app.route("/", methods=["GET"])
 def home():

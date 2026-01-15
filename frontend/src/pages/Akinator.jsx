@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../pages/Akinator.css';
 import avatar from '../assets/logo.png';
+import { API_ENDPOINTS } from '../config/api';
 
-const API_URL = 'http://localhost:5001/akinator';
+const API_URL = API_ENDPOINTS.AKINATOR;
 
 export default function Akinator({ user }) {
   const [gameId, setGameId] = useState(null);

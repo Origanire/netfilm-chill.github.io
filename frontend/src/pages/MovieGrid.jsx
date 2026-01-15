@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import './MovieGrid.css';
+import { API_ENDPOINTS } from '../config/api';
 
-const API_URL = 'http://localhost:5003/moviegrid';
+const API_URL = API_ENDPOINTS.MOVIEGRID;
 
 export default function MovieGrid() {
   const [gridCells, setGridCells] = useState([]);

@@ -1,5 +1,0 @@
-requests
-fastapi
-uvicorn[standard]
-flask
-flask_cors
