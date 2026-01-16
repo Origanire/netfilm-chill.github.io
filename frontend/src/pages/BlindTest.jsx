@@ -37,14 +37,14 @@ export default function BlindTest() {
     if (audioRef.current) { audioRef.current.pause(); audioRef.current.currentTime = 0; }
     if (feedbackRef.current) { feedbackRef.current.pause(); feedbackRef.current.currentTime = 0; feedbackRef.current = null; }
     setLoading(true);
-    fetch(`${API_URL}/quiz/random`) // GET retourne { id, title, composer, year, difficulty }
+    fetch(`${API_URL}/api/quiz/random`) // GET retourne { id, title, composer, year, difficulty }
       .then(res => res.json())
       .then(data => {
         const id = data.id;
         setQuizId(id);
         setQuestion(`Quel est le film correspondant à cette musique ?`);
         // Priorité: asset local si présent sinon tester le backend puis fallback
-        const backendAudio = `${API_URL}/audio/${id}`;
+        const backendAudio = `${API_URL}/api/audio/${id}`;
         const localKey = `/assets/soundtracks/${id}.mp3`;
         const localUrl = SOUND_MAP[localKey] || null;
         if (localUrl) {
@@ -82,7 +82,7 @@ export default function BlindTest() {
     // stop any feedback currently playing
     if (feedbackRef.current) { feedbackRef.current.pause(); feedbackRef.current.currentTime = 0; feedbackRef.current = null; }
     setLoading(true);
-    fetch(`${API_URL}/quiz/${quizId}/answer`, {
+    fetch(`${API_URL}/api/quiz/${quizId}/answer`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answer }),
